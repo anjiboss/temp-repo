@@ -1,20 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-// interface item {
-//     "id": string;
-//     "status": boolean;
-//     "todo": string;
-//     "userName": string;
-// }
+interface Props {
+  item: Todo;
+}
 
-export default function TodoItem({ item }: any) {
+const TodoItem: React.FC<Props> = ({ item }) => {
   return (
     <TouchableOpacity>
       <Text style={styles.item}>{item.todo}</Text>
     </TouchableOpacity>
   );
-}
+};
+export default TodoItem;
 
 const styles = StyleSheet.create({
   item: {
