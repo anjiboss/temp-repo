@@ -1,8 +1,8 @@
 import React from "react";
 import { NavigationContainer, StackActions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Home from "../screens/home";
-import Login from "../screens/login";
+import Home from "../screens/Home";
+import Login from "../screens/Login";
 
 export type RootStackParams = {
   Home: any;
