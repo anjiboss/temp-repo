@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import * as SecureStore from "expo-secure-store";
 import axios from "axios";
 import CButton from "../components/CButton";
-import Todo from "../components/Todo";
+import TodoApp from "../components/Todo";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParams } from "../routes/router";
 
@@ -13,27 +13,11 @@ interface HomeScreenProps {
 
 type Props = NativeStackScreenProps<RootStackParams, "Home">;
 
-type todoArr = [
-  {
-    id: string;
-    status: boolean;
-    todo: string;
-    userName: string;
-  }
-];
-
-interface item {
-  id: string;
-  status: boolean;
-  todo: string;
-  userName: string;
-}
-
 const Home: React.FC<Props> = (prop) => {
   const todo_baseURL = "http://192.168.43.234:5000/api/v1/todo";
 
   const [username, setUsername] = useState("");
-  const [ctodos, setCtodos] = useState<todoArr>();
+  const [ctodos, setCtodos] = useState<Todo[]>();
   const [utodo, setUtodo] = useState([]);
 
   // AXIOS get request get the user's todo
@@ -85,9 +69,9 @@ const Home: React.FC<Props> = (prop) => {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <FlatList
           data={ctodos}
-          keyExtractor={(item, index) => "key" + index}
+          keyExtractor={(_, index) => "key" + index} // underscore mean {I'm not gonna use that}
           renderItem={({ item }) => {
-            return <Todo item={item} />;
+            return <TodoApp item={item} />;
           }}
         />
         <CButton
